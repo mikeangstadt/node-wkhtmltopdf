@@ -61,23 +61,6 @@ function wkhtmltopdf(input, options, callback) {
     
   // setup error handling
   var stream = child.stdout;
-  function handleError(err) {
-    child.removeAllListeners('exit');
-    child.kill();
-    
-    // call the callback if there is one
-    if (callback)
-      callback(err);
-      
-    // if not, or there are listeners for errors, emit the error event
-    if (!callback || stream.listeners('error').length > 0)
-      stream.emit('error', err);
-  }
-  
-  child.once('error', handleError);
-  child.stderr.once('data', function(err) {
-    handleError(new Error((err || '').toString().trim()));
-  });
   
   // write input to stdin if it isn't a url
   if (!isUrl)
