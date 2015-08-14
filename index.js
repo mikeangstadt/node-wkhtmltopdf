@@ -69,12 +69,12 @@ function wkhtmltopdf(input, options, callback) {
   args.push(isUrl ? quote(input) : '-'); // stdin if HTML given directly
   args.push(output ? quote(output) : '-'); // stdout if no output file
 
-  if (process.platform === 'win32') {
-    var child = spawn(args[0], args.slice(1));
-  } else {
+  //if (process.platform === 'win32') {
+  var child = spawn(args[0], args.slice(1));
+  /*} else {
     // this nasty business prevents piping problems on linux
     var child = spawn('/bin/sh', [args.join(' ') + ' | cat']);
-  }
+  }*/
 
   // call the callback with null error when the process exits successfully
   if (callback)
