@@ -74,7 +74,7 @@ function wkhtmltopdf(input, options, callback) {
   } else {
     // this nasty business prevents piping problems on linux
     var child = spawn('/bin/sh', ['-c', args.join(' ') + ' | cat']);
-    debug("arg line is:", ['-c', args.join(' ') + ' | cat']);
+    console.log("arg line is:", ['-c', args.join(' ') + ' | cat']);
   }
 
   // call the callback with null error when the process exits successfully
