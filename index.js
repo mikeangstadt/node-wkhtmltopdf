@@ -58,7 +58,7 @@ function wkhtmltopdf(input, options, callback) {
 
   _.each(options.cookies, function (cookie_val, cookie_name) {
     args.push("--cookie");
-    args.push(quote(cookie_name));
+    args.push(cookie_name);
     args.push(quote(cookie_val));
   });
 
