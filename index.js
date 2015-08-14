@@ -1,5 +1,6 @@
 var spawn = require('child_process').spawn;
 var slang = require('slang');
+var _ = require('lodash');
 
 function quote(val) {
   // escape and quote the value if it is a string and this isn't windows
@@ -40,7 +41,7 @@ function wkhtmltopdf(input, options, callback) {
     return true;
   }).concat(extraKeys);
 
-  var args = [wkhtmltopdf.command];
+  var args = [wkhtmltopdf.command, '--quiet'];
 
   keys.forEach(function (key) {
     var val = options[key];
@@ -57,8 +58,10 @@ function wkhtmltopdf(input, options, callback) {
   _.each(options.cookies, function (cookie_val, cookie_name) {
     args.push("--cookie");
     args.push(quote(cookie_name));
-    args.push(quote(cookie_value));
+    args.push(quote(cookie_val));
   });
+
+  console.log("args are:", args);
 
   var isUrl = /^(https?|file):\/\//.test(input);
 
