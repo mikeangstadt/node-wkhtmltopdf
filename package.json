@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "slang": ">=0.2",
-    "lodash": "^3.9.3"
+    "lodash": "^3.9.3",
+    "debug": "^2.2.0"
   },
   "repository": {
     "type": "git",

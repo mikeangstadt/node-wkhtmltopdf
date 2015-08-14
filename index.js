@@ -1,6 +1,7 @@
 var spawn = require('child_process').spawn;
 var slang = require('slang');
 var _ = require('lodash');
+var debug = require('debug');
 
 function quote(val) {
   // escape and quote the value if it is a string and this isn't windows
@@ -61,7 +62,7 @@ function wkhtmltopdf(input, options, callback) {
     args.push(quote(cookie_val));
   });
 
-  console.log("args are:", args);
+  debug("args are:", args);
 
   var isUrl = /^(https?|file):\/\//.test(input);
 
@@ -73,7 +74,7 @@ function wkhtmltopdf(input, options, callback) {
   } else {
     // this nasty business prevents piping problems on linux
     var child = spawn('/bin/sh', ['-c', args.join(' ') + ' | cat']);
-    console.log("arg line is:", ['-c', args.join(' ') + ' | cat']);
+    debug("arg line is:", ['-c', args.join(' ') + ' | cat']);
   }
 
   // call the callback with null error when the process exits successfully
