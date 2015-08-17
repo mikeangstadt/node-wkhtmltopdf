@@ -73,8 +73,8 @@ function wkhtmltopdf(input, options, callback) {
     var child = spawn(args[0], args.slice(1));
   } else {
     // this nasty business prevents piping problems on linux
-    console.log("call made is::", '/bin/sh ', "'" + args.join(' ') + "'");
-    var child = spawn('/bin/sh', "'" + args.join(' ') + "'");
+    console.log("call made is::", "/bin/sh", ["-c", args.join(' ')]);
+    var child = spawn('/bin/sh', ["-c", args.join(' ')]);
   }
 
   // call the callback with null error when the process exits successfully
@@ -94,5 +94,5 @@ function wkhtmltopdf(input, options, callback) {
   return stream;
 }
 
-wkhtmltopdf.command = '/user/local/bin/wkhtmltopdf';
+wkhtmltopdf.command = '/usr/local/bin/wkhtmltopdf';
 module.exports = wkhtmltopdf;
